@@ -1,0 +1,180 @@
+
+    /* =========================
+       THEME VARIABLES
+    ========================== */
+    :root {
+      --bg: #020617;
+      --card-bg: #020617;
+      --accent: #38bdf8;
+      --text: #e5e7eb;
+      --radius: 16px;
+      --duration: 700ms;
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* =========================
+       RESET
+    ========================== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: radial-gradient(circle at top, #020617, #000);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      color: var(--text);
+    }
+
+    /* =========================
+       CARD
+    ========================== */
+    .card {
+      width: min(90%, 360px);
+      padding: 2rem;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
+      text-align: center;
+
+      animation: fadeUp var(--duration) var(--ease) both;
+    }
+
+    /* =========================
+       ANIMATED FONT (TITLE)
+       Gradient + reveal motion
+    ========================== */
+    .title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 0.6rem;
+
+      background: linear-gradient(
+        90deg,
+        #38bdf8,
+        #a5f3fc,
+        #38bdf8
+      );
+      background-size: 200% 100%;
+
+      color: transparent;
+      background-clip: text;
+      -webkit-background-clip: text;
+
+      animation:
+        textReveal 900ms var(--ease) both,
+        gradientMove 3s ease-in-out infinite;
+    }
+
+    /* =========================
+       SUBTITLE
+    ========================== */
+    .card p {
+      font-size: 0.95rem;
+      opacity: 0.75;
+      margin-bottom: 1.6rem;
+      animation: fadeIn 800ms ease 300ms both;
+    }
+
+    /* =========================
+       BUTTON
+    ========================== */
+    .btn {
+      padding: 0.75rem 1.4rem;
+      border-radius: 999px;
+      border: none;
+      background: var(--accent);
+      color: #020617;
+      font-weight: 600;
+      cursor: pointer;
+
+      transition:
+        transform 200ms var(--ease),
+        box-shadow 200ms var(--ease),
+        opacity 200ms var(--ease);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px) scale(1.03);
+      box-shadow: 0 12px 30px rgba(56, 189, 248, 0.4);
+    }
+
+    .btn:active {
+      transform: scale(0.97);
+      opacity: 0.9;
+    }
+
+    /* =========================
+       KEYFRAMES
+    ========================== */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 0.75;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes textReveal {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes gradientMove {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    /* =========================
+       ACCESSIBILITY
+    ========================== */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================== */
+    @media (max-width: 480px) {
+      .card {
+        padding: 1.5rem;
+      }
+
+      .title {
+        font-size: 1.4rem;
+      }
+    }
